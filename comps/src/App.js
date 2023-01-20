@@ -1,22 +1,25 @@
-import Button from './Button'
+import React, {useState} from 'react';
+import Dropdown from './components/Dropdown';
 
 function App() {
+
+  const [selection, setSelection] = useState(null);
+  
+  const handleSelect = (option) => {
+    setSelection(option);
+  }
+  
+  const options = [
+		{ label: 'red', value: 'red' },
+		{ label: 'green', value: 'green' },
+		{ label: 'blue', value: 'blue' },
+	];
   return (
-		<div>
-			<div>
-				<Button success rounded outline>Click me!</Button>
-			</div>
-			<div>
-				<Button danger outline>Buy Now!</Button>
-			</div>
-			<div>
-				<Button warning>See Deal!</Button>
-			</div>
-			<div>
-				<Button>Hide Ads!</Button>
-			</div>
+		<div className='flex'>
+			<Dropdown options={options} onChange={handleSelect} value={selection} />
+			<Dropdown options={options} onChange={handleSelect} value={selection} />
 		</div>
 	);
 }
 
-export default App;
+export default App
