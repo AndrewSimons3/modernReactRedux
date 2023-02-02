@@ -1,5 +1,28 @@
 {
-  "users": [],
-  "albums": [],
+  "users": [
+    {
+      "name": "Maurice Johns",
+      "id": 1
+    },
+    {
+      "name": "Mr. Donnie Wilkinson",
+      "id": 2
+    },
+    {
+      "name": "Felix Mills",
+      "id": 3
+    },
+    {
+      "name": "Jean Skiles",
+      "id": 4
+    }
+  ],
+  "albums": [
+    {
+      "id": 10,
+      "title": "Hiking Trip",
+      "userId": 1
+    }
+  ],
   "photos": []
 }
