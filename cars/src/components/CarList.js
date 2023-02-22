@@ -1,35 +1,26 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { removeCar } from '../store';
-import { formReducer } from '../store/slices/formSlice';
 
 function CarList() {
-	const dispatch = useDispatch();
-	const {cars, name} = useSelector(({form, cars: { data, searchTerm } }) => {
-		const filteredCars = data.filter((car) =>
-			car.name.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-    
-    return {
-      cars: filteredCars,
-      name: form.name
-    }
+  const dispatch = useDispatch();
+
+	const cars = useSelector((state) => {
+		return state.cars.data;
 	});
 
-	const handleCarDelete = (car) => {
-		dispatch(removeCar(car.id));
-	};
+  const handleCarDelete = (car) => {
+    dispatch(removeCar(car.id))
+  };
 
-  const renderedCars = cars.map((car) => {
-    const bold = name && car.name.toLowerCase().includes(name.toLowerCase())
-    
+	const renderedCars = cars.map((car) => {
 		return (
-			<div key={car.id} className={`panel ${bold && 'bold'}`}>
+			<div key={car.id} className='panel'>
 				<p>
 					{car.name} - ${car.cost}
 				</p>
 				<button
-					onClick={() => handleCarDelete(car)}
 					className='button is-danger'
+					onClick={() => handleCarDelete(car)}
 				>
 					Delete
 				</button>

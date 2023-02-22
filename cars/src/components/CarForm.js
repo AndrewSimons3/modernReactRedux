@@ -1,10 +1,9 @@
-import React from 'react';
-import { useSelector, useDispatch, } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { changeName, changeCost, addCar } from '../store';
-
 
 function CarForm() {
 	const dispatch = useDispatch();
+
 	const { name, cost } = useSelector((state) => {
 		return {
 			name: state.form.name,
@@ -23,17 +22,11 @@ function CarForm() {
 
 	const handleSubmit = (event) => {
 		event.preventDefault();
-		dispatch(
-			addCar({
-				name,
-				cost,
-			})
-    );
-    
+		dispatch(addCar({ name, cost }));
 	};
 
 	return (
-		<div className='car-form panel'>
+		<div className='car-name panel'>
 			<h4 className='subtitle is-3'>Add Car</h4>
 			<form onSubmit={handleSubmit}>
 				<div className='field-group'>
@@ -45,12 +38,14 @@ function CarForm() {
 							onChange={handleNameChange}
 						/>
 					</div>
+
 					<div className='field'>
 						<label className='label'>Cost</label>
 						<input
 							className='input is-expanded'
 							value={cost || ''}
 							onChange={handleCostChange}
+							type='number'
 						/>
 					</div>
 				</div>
